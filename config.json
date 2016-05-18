@@ -1,0 +1,42 @@
+{
+    "port": 3000,
+    "foodMass": 1,
+    "fireFood": 5,
+    "limitSplit": 16,
+    "defaultPlayerMass": 10,
+	"virus": {
+        "fill": "#33ff33",
+        "stroke": "#19D119",
+            "strokeWidth": 20,
+            "defaultMass": {
+                "from": 100,
+                "to": 150
+            },
+            "splitMass": 180
+	},
+    "boss": {
+        "fireFood": 10,
+        "mass": 10000,
+        "attackTime": 5000,
+        "safeTime": 20000,
+        "liveTime": 240000,
+        "respawn": 480000
+    },
+    "attackLevel": 2,
+    "gameWidth": 5000,
+    "gameHeight": 5000,
+    "adminPass": "whoami",
+    "gameMass": 20000,
+    "maxFood": 1000,
+    "maxVirus": 50,
+    "slowBase": 4.5,
+    "logChat": 0,
+    "networkUpdateFactor": 30,
+    "maxHeartbeatInterval": 60000,
+    "foodUniformDisposition": true,
+    "virusUniformDisposition": false,
+    "newPlayerInitialPosition": "farthest",
+    "massLossRate": 1,
+    "evolutionMax": 4,
+    "mergeTimer": 15
+}

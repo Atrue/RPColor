@@ -1,0 +1,158 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <!-- Meta Properties -->
+    <meta charset="UTF-8">
+    <title>RPColor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <!-- Audio -->
+    <audio id="split_cell" src="audio/split.mp3"></audio>
+    <audio id="spawn_cell" src="audio/spawn.mp3"></audio>
+</head>
+<body>
+    <div id="gameAreaWrapper">
+        <div id="status"><span class="title">Leaderboard</span></div>
+
+        <div class="leftPanes">
+        <div id="leftPane" class="leftPane">
+            <div class="leftHeader">
+                <div class="leftHname">Stats</div>
+                <div id="leftResize" class="greenButton"><=</div>
+            </div>
+            <div class="leftStats">
+                <div class="statsMiddle">Leading color:<span id="leadColor" class="dRed" >Red</span></div>
+                <div class="halfLeft">
+                    <div class="statsLeftle dRed">R:<span id="redCount">0</span></div>
+                    <div class="statsLeftle dGreen">G:<span id="greenCount">0</span></div>
+                    <div class="statsLeftle dBlue">B:<span id="blueCount">0</span></div>
+                </div>
+                <div class="halfLeft">
+                    <div class="statsLeftle">M:<span id="massCount">0</span></div>
+                    <div class="statsLeftle">Rad:<span id="radiusCount">0</span></div>
+                    <div class="statsLeftle">Exp:<span id="evolutionCount">0</span></div>
+                </div>
+            </div>
+        </div>
+        <div id="chatPane" class="leftPane">
+            <div class="leftHeader">
+                <div class="leftHname">Chat</div>
+                <div id="chatResize" class="greenButton"><=</div>
+            </div>
+            <div class="chatbox " id="chatbox">
+                <ul id="chatList" class="chat-list"><li class="system">{GAME} - <b>x</b> joined.</li><li class="system">Connected to the game!</li><li class="system">Type <b>-help</b> for a list of commands.</li></ul>
+                <input id="chatInput" type="text" class="chat-input" placeholder="Chat here..." maxlength="35">
+            </div>
+        </div>
+        </div>
+
+
+        <div id="helpPane" class="helpPane">
+            <div class="leftHeader">
+                <div class="leftHname">Help</div>
+                <div id="helpClose" class="greenButton">X</div>
+            </div>
+            <div class="helpInfo">
+                <div class="helpWelcome"></div>
+                <div class="helpContent">
+                </div>
+            </div>
+            <div class="helpBott">
+                <div id="exitHelp" class="redButton">Never show again.</div>
+                <div id="nextHelp" class="greenButton">OK.</div>
+            </div>
+        </div>
+
+
+
+        <div id='evolution' class='evolution'>
+            <div class="prgs_skills">
+                <div id="s1" class="prgs_skill inactive_skill"><div class="skill_cd"></div></div>
+                <div id="s2" class="prgs_skill inactive_skill"><div class="skill_cd"></div></div>
+                <div id="s3" class="prgs_skill inactive_skill"><div class="skill_cd"></div></div>
+                <div id="s4" class="prgs_skill inactive_skill"><div class="skill_cd"></div></div>
+            </div>
+            <div class='prgs_border'>
+
+                <div class='prgs_stage prgs_active' >
+                    <div class='prgs_stext'>Stage 1</div>
+                </div>
+                <div class='prgs_stage ' >
+                    <div class='prgs_stext'>Stage 2</div>
+                </div>
+                <div class='prgs_stage ' >
+                    <div class='prgs_stext'>Stage 3</div>
+                </div>
+                <div class='prgs_stage ' >
+                    <div class='prgs_stext'>Stage 4</div>
+                </div>
+            </div>
+            <div id='evol_prog' class='progress'></div>
+        </div>
+        <!--<div id="mobile">
+           <input type="image" id="split" class="split" src="img/split.png" alt="splitBtn">
+           <input type="image" id="feed" class="feed" src="img/feed.png" alt="feedBtn">
+        </div> -->
+        <canvas tabindex="1" id="cvs"></canvas>
+    </div>
+    <div id="startMenuWrapper">
+        <div id="startMenu">
+            <p>Welcome!</p>
+            <input type="text" tabindex="0" autofocus placeholder="Enter your name here" id="playerNameInput" maxlength="25" />
+            <b class="input-error">Nick must be not a null!</b>
+            <br />
+            <a onclick="document.getElementById('spawn_cell').play();"><button id="startButton">Play</button></a>
+            <button id="spectateButton">Spectate</button>
+            <button id="settingsButton">Settings</button>
+            <button id="skillsButton">Skills information</button>
+            <br />
+            <div id="skillsInfo">
+                <ul>
+                        <li>Keys 1,2 and 3 shoot red, green and blue paints. You can feed other players or deal damage to the boss.</li>
+                        <li><b>Stage 1 (Q)</b><br>
+                            <div><img src="img/r1.jpg"><span class='about_skills'><span style="color:#ff0000">Impulse.</span><br>Shoot 3 colorful paint. Gives small impulse</span></div><br>
+                            <div><img src="img/g1.jpg"><span class='about_skills'><span style="color:#00ff00">Shield.</span><br>Gives you invulnerability for 4 seconds. </span></div><br>
+                            <div><img src="img/b1.jpg"><span class='about_skills'><span style="color:#0000ff">Speedy.</span><br>Increases your speed to 50% for 5 seconds.</span></div></li>
+                        <li><b>Stage 2 (W)</b><br>
+                            <div><img src="img/r2.jpg"><span class='about_skills'><span style="color:#ff0000">Fire bomb.</span><br>Shoot a bomb. It deals 10 % Red paint damage. </span></div><br>
+                            <div><img src="img/g2.jpg"><span class='about_skills'><span style="color:#00ff00">Hook.</span><br>Shoot a hook-bomb. It clings first enemy and pulls it to you and deals 4% Green paint damage.</span></div><br>
+                            <div><img src="img/b2.jpg"><span class='about_skills'><span style="color:#0000ff">Toss.</span><br>Shoot a toss-bomb. It clings first enemy and pulls you to it. Deals 7% Blue paint damage.</span></div></li>
+                        <li><b>Stage 3 (E)</b><br>
+                            <div><img src="img/r3.jpg"><span class='about_skills'><span style="color:#ff0000">Edible paint.</span><br>Adds 20% from your max count of paint to your mass. </span></div><br>
+                            <div><img src="img/g3.jpg"><span class='about_skills'><span style="color:#00ff00">Stun bomb.</span><br>Create a bomb behind you for 15 seconds. It stuns max for 3 seconds. </span></div><br>
+                            <div><img src="img/b3.jpg"><span class='about_skills'><span style="color:#0000ff">Slow bomb.</span><br>Throw a bomb that slows enemy for 50%. It deals 2% Blue paint damage.</span></div></li>
+                        <li><b>Stage 4 (R)</b><br>
+                            <div><img src="img/r4.jpg"><span class='about_skills'><span style="color:#ff0000">Blink.</span><br>Smoothly blink to short distance. </span></div><br>
+                            <div><img src="img/g4.jpg"><span class='about_skills'><span style="color:#00ff00">Reincarnation (passive).</span><br>Revives you after death in random point. </span></div><br>
+                            <div><img src="img/b4.jpg"><span class='about_skills'><span style="color:#0000ff">Invisibility.</span><br>Gives you invisible for 15 seconds.</span></div></li>
+
+                </ul>
+            </div>
+            <div id="settings">
+                <h3>Settings</h3>
+                <ul>
+                    <label><input id="visBord" type="checkbox">Show border</label>
+                    <label><input id="showMass" type="checkbox">Show mass</label>
+                    <br />
+                    <label><input id="continuity" type="checkbox">Continue moving when mouse is off-screen</label>
+                    <br />
+                    <label><input id="roundFood" type="checkbox" checked>Rounded food</label>
+                </ul>
+            </div>
+            <div id="instructions">
+                <h3>Changelog</h3>
+                <ul>
+                    <li><b>v.1.0 </b>Agario's colors dependent gameplay.</li>
+                    <li><b>v.1.1 </b>Added skills.</li>
+                    <li><b>v.1.2 </b>Added the boss.</li>
+                    <li><b>v.1.3 </b>Added interactive help. Changed skills.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- JS -->
+    <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

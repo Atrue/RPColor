@@ -24,6 +24,11 @@ How to locally install the game is described [here](https://github.com/huytd/aga
 
 ---
 
+## Questions / suggestions
+You are welcome to write your errors and ideas [here](https://github.com/Atrue/RPColor/issues)
+
+---
+
 ## License
 >You can check out the full license [here](https://github.com/Atrue/RPColor/blob/master/LICENSE).
 
